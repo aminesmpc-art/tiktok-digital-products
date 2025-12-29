@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { Route } from "next";
 import { useState } from "react";
 import { site } from "@/content/data";
+import { Button } from "@/components/button";
 
 const links: { href: Route; label: string }[] = [
   { href: "/products", label: "Products" },
@@ -18,9 +19,9 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-30 bg-slate-50/80 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-        <Link href="/" className="text-lg font-semibold tracking-tight" aria-label="Go home">
+    <header className="sticky top-0 z-30 border-b border-white/60 bg-slate-50/80 backdrop-blur">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+        <Link href="/" className="text-base font-semibold tracking-tight" aria-label="Go home">
           {site.brand}
         </Link>
         <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
@@ -29,22 +30,17 @@ export function SiteHeader() {
               {link.label}
             </Link>
           ))}
-          <Link
-            href="/products"
-            className="rounded-full bg-brand.accent px-4 py-2 text-sm font-semibold text-white shadow transition hover:translate-y-[-1px]"
-          >
+          <Button href="/products" className="px-4 py-2 text-sm">
             Shop templates
-          </Link>
+          </Button>
         </nav>
-        <div className="flex items-center gap-3 md:hidden">
-          <Link
-            href="/products"
-            className="rounded-full bg-brand.accent px-4 py-2 text-sm font-semibold text-white shadow"
-          >
+        <div className="flex items-center gap-2 md:hidden">
+          <Button href="/products" className="px-4 py-2 text-sm shadow-sm">
             Shop
-          </Link>
+          </Button>
           <button
             aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
             className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white shadow transition hover:border-slate-300"
           >
@@ -62,25 +58,44 @@ export function SiteHeader() {
         </div>
       </div>
       {open && (
-        <div className="border-t border-slate-200 bg-white shadow-inner md:hidden">
-          <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-4 text-base">
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="rounded-lg px-3 py-3 font-semibold hover:bg-slate-100"
+        <div className="fixed inset-0 z-40 md:hidden" role="dialog" aria-modal>
+          <button
+            aria-label="Close menu"
+            className="absolute inset-0 h-full w-full bg-slate-900/40 backdrop-blur-sm"
+            onClick={() => setOpen(false)}
+          />
+          <div className="ml-auto flex h-full w-11/12 max-w-xs flex-col gap-2 bg-white px-5 py-6 shadow-2xl">
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-semibold text-slate-900">Browse</span>
+              <button
                 onClick={() => setOpen(false)}
+                className="h-10 w-10 rounded-full border border-slate-200 text-lg text-slate-700"
+                aria-label="Close menu"
               >
-                {link.label}
-              </Link>
-            ))}
-            <Link
-              href="/services"
-              className="rounded-lg px-3 py-3 font-semibold text-brand.accent hover:bg-slate-100"
-              onClick={() => setOpen(false)}
-            >
-              Book a call
-            </Link>
+                ×
+              </button>
+            </div>
+            <div className="divide-y text-base">
+              {links.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="flex items-center justify-between py-3 font-semibold hover:text-brand.accent"
+                  onClick={() => setOpen(false)}
+                >
+                  {link.label}
+                  <span aria-hidden>→</span>
+                </Link>
+              ))}
+            </div>
+            <div className="mt-4 space-y-2">
+              <Button href="/services" className="w-full justify-center">
+                Book a call
+              </Button>
+              <Button href="/products" variant="secondary" className="w-full justify-center">
+                Shop templates
+              </Button>
+            </div>
           </div>
         </div>
       )}

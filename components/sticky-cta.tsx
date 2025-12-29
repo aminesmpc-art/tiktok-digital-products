@@ -1,6 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
 
 interface StickyCTAProps {
   label: string;
@@ -24,17 +26,23 @@ export function StickyCTA({ label, href, subtext, tone = "buy" }: StickyCTAProps
   return (
     <div className="pointer-events-none fixed bottom-3 left-0 right-0 z-40 md:hidden">
       <div className="mx-auto max-w-6xl px-4">
-        <div className="pointer-events-auto rounded-full shadow-lg">
-          <a
-            href={href}
-            className={`flex items-center justify-between gap-3 rounded-full px-5 py-4 text-base font-semibold transition active:scale-[0.99] ${toneClass}`}
+        <div className="pointer-events-auto overflow-hidden rounded-2xl shadow-xl ring-1 ring-black/5">
+          <Link
+            href={href as any}
+            className={cn(
+              "flex items-center justify-between gap-4 px-5 py-4 text-base font-semibold transition active:scale-[0.99]",
+              toneClass
+            )}
+            aria-label={label}
           >
-            <div className="flex flex-col">
+            <div className="flex flex-col text-left">
               <span>{label}</span>
-              {subtext ? <span className="text-xs opacity-90">{subtext}</span> : null}
+              {subtext ? <span className="text-xs opacity-85">{subtext}</span> : null}
             </div>
-            <span aria-hidden className="text-lg">→</span>
-          </a>
+            <span aria-hidden className="text-xl">
+              →
+            </span>
+          </Link>
         </div>
       </div>
     </div>

@@ -2,62 +2,50 @@ import Link from "next/link";
 import { products, services, testimonials, leadMagnets, faq, site } from "@/content/data";
 import { formatPrice } from "@/lib/utils";
 import { StickyCTA } from "@/components/sticky-cta";
+import { Button } from "@/components/button";
 
-const heroBullets = ["Hook-first creative", "Launch-ready templates", "Audit-grade clarity"];
+const trustRow = ["Creators + founders", "Results in 30 days", "Templates included"];
 
 export default function HomePage() {
   const featured = products[0];
   const magnet = leadMagnets[0];
   return (
-    <div className="space-y-14">
-      <section className="grid items-start gap-8 md:grid-cols-2">
+    <div className="space-y-12">
+      <section className="grid items-start gap-6 rounded-3xl border bg-white/80 p-5 shadow-sm sm:p-8 md:grid-cols-[1.1fr_0.9fr]">
         <div className="space-y-5">
-          <p className="text-xs font-semibold uppercase tracking-wide text-brand.accent">TikTok revenue systems</p>
-          <h1 className="text-3xl font-bold leading-tight text-slate-900 sm:text-4xl">
-            Stop guessing. Ship TikTok content that converts.
+          <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-brand.accent">TikTok revenue systems</p>
+          <h1 className="text-[1.85rem] font-bold leading-tight text-slate-900 sm:text-4xl">
+            Stop guessing. Ship TikTok content that converts in weeks, not months.
           </h1>
           <p className="text-base leading-relaxed text-slate-700 sm:text-lg">{site.tagline}</p>
-          <div className="flex flex-wrap gap-3">
-            <Link
-              className="rounded-full bg-brand.accent px-5 py-3 text-base font-semibold text-white shadow transition hover:translate-y-[-1px]"
-              href="/products"
-            >
-              Shop digital kits
-            </Link>
-            <Link
-              className="rounded-full border border-brand.accent px-5 py-3 text-base font-semibold text-slate-900 transition hover:bg-brand.soft"
-              href="/services"
-            >
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+            <Button className="w-full justify-center sm:w-auto" href="/products">
+              Shop TikTok kits
+            </Button>
+            <Button variant="secondary" className="w-full justify-center sm:w-auto" href="/services">
               Book a strategy call
-            </Link>
-            <Link className="text-sm font-semibold underline" href="/freebie">
-              Get the free prompt pack →
-            </Link>
+            </Button>
+            <Button variant="ghost" className="w-full justify-start text-sm sm:w-auto" href="/freebie">
+              Grab the free prompt pack →
+            </Button>
           </div>
-          <div className="flex flex-wrap gap-2 text-xs font-semibold text-slate-700 sm:text-sm">
-            {heroBullets.map((b) => (
-              <span key={b} className="rounded-full bg-white px-3 py-2 shadow-sm ring-1 ring-slate-100">
-                {b}
+          <div className="flex flex-wrap gap-2 text-[11px] font-semibold uppercase tracking-wide text-slate-700 sm:text-xs">
+            {trustRow.map((item) => (
+              <span key={item} className="rounded-full bg-slate-100 px-3 py-2 text-slate-800 ring-1 ring-slate-200">
+                {item}
               </span>
             ))}
           </div>
-          <div className="flex items-center gap-3 rounded-2xl bg-white px-4 py-3 shadow-sm ring-1 ring-slate-100">
-            <div className="h-10 w-10 rounded-full bg-brand.soft" aria-hidden />
-            <div className="text-sm leading-relaxed text-slate-700">
-              <p className="font-semibold text-slate-900">Used by creators and brands</p>
-              <p>Templates, hooks, and tests to see results in 30 days.</p>
-            </div>
-          </div>
         </div>
-        <div className="space-y-4 rounded-2xl border bg-white p-6 shadow-sm">
-          <div className="flex items-center justify-between text-sm font-semibold text-slate-600">
+        <div className="space-y-4 rounded-2xl border border-slate-100 bg-slate-50/70 p-5 shadow-inner sm:p-6">
+          <div className="flex items-center justify-between text-[13px] font-semibold text-slate-600">
             <span>Featured product</span>
-            <span className="rounded-full bg-brand.soft px-3 py-1 text-brand.accent">Launch-ready</span>
+            <span className="rounded-full bg-brand.soft px-3 py-1 text-xs text-brand.accent">Launch-ready</span>
           </div>
           <h2 className="text-2xl font-bold text-slate-900">{featured.name}</h2>
-          <p className="text-base text-slate-700">{featured.shortDescription}</p>
+          <p className="text-sm leading-relaxed text-slate-700">{featured.shortDescription}</p>
           <p className="text-2xl font-bold text-slate-900">{formatPrice(featured.priceCents)}</p>
-          <ul className="space-y-2 rounded-xl bg-slate-50 p-4 text-sm text-slate-700">
+          <ul className="space-y-2 rounded-xl bg-white p-4 text-sm text-slate-700 ring-1 ring-slate-100">
             {featured.includes.slice(0, 3).map((item) => (
               <li key={item} className="flex items-start gap-2">
                 <span aria-hidden className="mt-1 text-brand.accent">•</span>
@@ -65,19 +53,13 @@ export default function HomePage() {
               </li>
             ))}
           </ul>
-          <div className="flex flex-wrap gap-3 text-sm">
-            <Link
-              href={`/products/${featured.slug}`}
-              className="rounded-full bg-slate-900 px-4 py-3 font-semibold text-white transition hover:translate-y-[-1px]"
-            >
-              View details
-            </Link>
-            <Link
-              href="/freebie"
-              className="rounded-full border border-slate-200 px-4 py-3 font-semibold text-slate-900 hover:bg-slate-50"
-            >
+          <div className="flex flex-wrap gap-2 text-sm">
+            <Button href={`/products/${featured.slug}`} className="flex-1 justify-center sm:flex-none">
+              Shop this kit
+            </Button>
+            <Button variant="secondary" href="/freebie" className="flex-1 justify-center sm:flex-none">
               Try a free sample
-            </Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -85,38 +67,35 @@ export default function HomePage() {
       <section className="space-y-4">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="text-xs font-semibold uppercase text-brand.accent">Services & Freebie</p>
+            <p className="text-[11px] font-semibold uppercase text-brand.accent">Services & Freebie</p>
             <h2 className="text-2xl font-bold text-slate-900">Get hands-on guidance</h2>
           </div>
-          <Link href="/services" className="text-sm font-semibold text-brand.accent underline">
-            Book a strategy call
-          </Link>
+          <Button variant="ghost" className="justify-start text-sm" href="/services">
+            Book a strategy call →
+          </Button>
         </div>
         <div className="grid gap-4 md:grid-cols-3">
           {services.map((svc) => (
-            <div key={svc.id} className="flex flex-col gap-3 rounded-xl border bg-white p-5 shadow-sm">
-              <div className="text-xs font-semibold uppercase text-brand.accent">Service</div>
+            <div key={svc.id} className="flex flex-col gap-3 rounded-2xl border bg-white p-5 shadow-sm ring-1 ring-slate-100">
+              <div className="flex items-center justify-between text-[11px] font-semibold uppercase text-brand.accent">
+                <span>Service</span>
+                <span className="rounded-full bg-brand.soft px-3 py-1 text-[11px] text-brand.accent">Live</span>
+              </div>
               <h3 className="text-lg font-semibold text-slate-900">{svc.name}</h3>
               <p className="text-sm leading-relaxed text-slate-700">{svc.description}</p>
               <p className="text-xl font-bold text-slate-900">{formatPrice(svc.priceCents)}</p>
-              <Link
-                className="rounded-full bg-slate-900 px-4 py-3 text-center text-sm font-semibold text-white"
-                href="/services"
-              >
-                Book this
-              </Link>
+              <Button href="/services" className="w-full justify-center text-sm">
+                Book this call
+              </Button>
             </div>
           ))}
-          <div className="flex flex-col gap-3 rounded-xl border border-brand.accent/20 bg-brand.soft p-5 shadow-sm">
-            <div className="text-xs font-semibold uppercase text-brand.accent">Freebie</div>
+          <div className="flex flex-col gap-3 rounded-2xl border border-brand.accent/30 bg-brand.soft p-5 shadow-sm">
+            <div className="text-[11px] font-semibold uppercase text-brand.accent">Freebie</div>
             <h3 className="text-lg font-semibold text-slate-900">{magnet.title}</h3>
             <p className="text-sm leading-relaxed text-slate-700">{magnet.description}</p>
-            <Link
-              className="rounded-full bg-white px-4 py-3 text-center text-sm font-semibold text-brand.accent ring-1 ring-brand.accent/30"
-              href="/freebie"
-            >
+            <Button variant="secondary" href="/freebie" className="w-full justify-center text-sm">
               Get the prompts
-            </Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -124,58 +103,63 @@ export default function HomePage() {
       <section className="space-y-4">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="text-xs font-semibold uppercase text-brand.accent">Digital products</p>
+            <p className="text-[11px] font-semibold uppercase text-brand.accent">Digital products</p>
             <h2 className="text-2xl font-bold text-slate-900">Launch faster with proven templates</h2>
           </div>
-          <Link href="/products" className="text-sm font-semibold text-brand.accent underline">
-            See all products
-          </Link>
+          <Button variant="ghost" className="justify-start text-sm" href="/products">
+            See all products →
+          </Button>
         </div>
         <div className="grid gap-4 md:grid-cols-3">
           {products.map((product) => (
-            <div key={product.id} className="flex flex-col gap-3 rounded-xl border bg-white p-5 shadow-sm">
-              <div className="text-xs font-semibold uppercase text-brand.accent">Digital</div>
+            <div
+              key={product.id}
+              className="flex flex-col gap-3 rounded-2xl border bg-white p-5 shadow-sm ring-1 ring-slate-100"
+            >
+              <div className="flex items-center justify-between text-[11px] font-semibold uppercase text-brand.accent">
+                <span>Digital</span>
+                <span className="rounded-full bg-slate-900 px-2 py-1 text-[11px] text-white">{formatPrice(product.priceCents)}</span>
+              </div>
               <h3 className="text-lg font-semibold text-slate-900">{product.name}</h3>
               <p className="text-sm leading-relaxed text-slate-700">{product.shortDescription}</p>
-              <p className="text-xl font-bold text-slate-900">{formatPrice(product.priceCents)}</p>
-              <div className="flex flex-wrap gap-2 text-xs">
+              <div className="flex flex-wrap gap-2 text-[11px] font-semibold text-slate-700">
                 {product.tags.map((tag) => (
-                  <span key={tag} className="rounded-full bg-brand.soft px-3 py-1 text-brand.accent font-semibold">
+                  <span key={tag} className="rounded-full bg-brand.soft px-3 py-1 text-brand.accent">
                     {tag}
                   </span>
                 ))}
               </div>
-              <Link
-                className="rounded-full border border-slate-200 px-4 py-3 text-center text-sm font-semibold text-slate-900 hover:bg-slate-50"
-                href={`/products/${product.slug}`}
-              >
-                View details
-              </Link>
+              <Button href={`/products/${product.slug}`} variant="secondary" className="w-full justify-center text-sm">
+                Shop this kit
+              </Button>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="space-y-4 rounded-2xl border bg-white p-6 shadow-sm">
+      <section className="space-y-4 rounded-3xl border bg-white p-6 shadow-sm sm:p-8">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <h3 className="text-2xl font-bold text-slate-900">What clients say</h3>
           <p className="text-sm text-slate-600">Proof the system works for creators and small teams.</p>
         </div>
         <div className="grid gap-4 md:grid-cols-2">
           {testimonials.map((t) => (
-            <blockquote key={t.name} className="rounded-xl border bg-slate-50 p-4 shadow-inner">
-              <p className="font-semibold text-slate-900">{t.name}</p>
-              <p className="text-xs text-slate-600">{t.role}</p>
-              <p className="mt-2 leading-relaxed">“{t.quote}”</p>
-              {t.resultMetric && (
-                <p className="mt-2 text-xs font-semibold uppercase tracking-wide text-brand.accent">{t.resultMetric}</p>
-              )}
+            <blockquote key={t.name} className="flex flex-col gap-2 rounded-2xl border bg-slate-50 p-5 shadow-inner">
+              {t.resultMetric ? (
+                <span className="w-fit rounded-full bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-brand.accent ring-1 ring-brand.accent/30">
+                  {t.resultMetric}
+                </span>
+              ) : null}
+              <p className="text-base font-semibold leading-snug text-slate-900">“{t.quote}”</p>
+              <p className="text-xs font-semibold uppercase tracking-wide text-slate-600">
+                {t.name} · {t.role}
+              </p>
             </blockquote>
           ))}
         </div>
       </section>
 
-      <section className="grid gap-6 rounded-2xl border border-brand.accent/30 bg-brand.soft p-6 md:grid-cols-2">
+      <section className="grid gap-6 rounded-3xl border border-brand.accent/30 bg-brand.soft p-6 md:grid-cols-2">
         <div className="space-y-3">
           <h3 className="text-2xl font-bold text-slate-900">How it works</h3>
           <ol className="space-y-3 text-sm leading-relaxed text-slate-700">

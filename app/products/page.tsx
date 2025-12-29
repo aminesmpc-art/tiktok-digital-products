@@ -1,7 +1,7 @@
-import Link from "next/link";
 import { products } from "@/content/data";
 import { formatPrice } from "@/lib/utils";
 import { StickyCTA } from "@/components/sticky-cta";
+import { Button } from "@/components/button";
 
 export const metadata = { title: "Products" };
 
@@ -16,27 +16,26 @@ export default function ProductsPage() {
       </div>
       <div className="grid gap-4 md:grid-cols-2">
         {products.map((product) => (
-          <article key={product.id} className="flex flex-col gap-3 rounded-2xl border bg-white p-5 shadow-sm">
-            <div className="flex items-center justify-between text-xs font-semibold uppercase text-brand.accent">
+          <article
+            key={product.id}
+            className="flex flex-col gap-3 rounded-2xl border bg-white p-5 shadow-sm ring-1 ring-slate-100"
+          >
+            <div className="flex items-center justify-between text-[11px] font-semibold uppercase text-brand.accent">
               <span>Digital</span>
-              <span className="rounded-full bg-brand.soft px-3 py-1 text-[11px] text-brand.accent">Launch ready</span>
+              <span className="rounded-full bg-slate-900 px-2 py-1 text-[11px] text-white">{formatPrice(product.priceCents)}</span>
             </div>
             <h2 className="text-xl font-semibold text-slate-900">{product.name}</h2>
             <p className="text-sm leading-relaxed text-slate-700">{product.shortDescription}</p>
-            <p className="text-xl font-bold text-slate-900">{formatPrice(product.priceCents)}</p>
-            <div className="flex flex-wrap gap-2 text-xs">
+            <div className="flex flex-wrap gap-2 text-[11px] font-semibold text-slate-700">
               {product.tags.map((tag) => (
-                <span key={tag} className="rounded-full bg-brand.soft px-3 py-1 text-brand.accent font-semibold">
+                <span key={tag} className="rounded-full bg-brand.soft px-3 py-1 text-brand.accent">
                   {tag}
                 </span>
               ))}
             </div>
-            <Link
-              className="rounded-full border border-slate-200 px-4 py-3 text-center text-sm font-semibold text-slate-900 hover:bg-slate-50"
-              href={`/products/${product.slug}`}
-            >
-              View details
-            </Link>
+            <Button href={`/products/${product.slug}`} variant="secondary" className="w-full justify-center text-sm">
+              Shop this kit
+            </Button>
           </article>
         ))}
       </div>
