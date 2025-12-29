@@ -1,5 +1,13 @@
 import { products, services, type Product, type Service } from "@/content/data";
 
+export const cn = (...classes: Array<string | false | null | undefined>) =>
+  classes.filter(Boolean).join(" ");
+
+export const absoluteUrl = (path = "/") => {
+  const base = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  return new URL(path, base).toString();
+};
+
 export const formatPrice = (priceCents: number, currency = "USD") =>
   new Intl.NumberFormat("en-US", { style: "currency", currency }).format(priceCents / 100);
 
