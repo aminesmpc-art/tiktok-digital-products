@@ -1,5 +1,5 @@
 import { products, services, testimonials, leadMagnets, faq, site } from "@/content/data";
-import { formatPrice } from "../lib/utils";
+import { formatPrice } from "@/lib/utils";
 
 const heroBullets = ["Hook-first creative", "Launch-ready templates", "Audit-grade clarity"];
 

@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { products } from "@/content/data";
-import { formatPrice } from "../../../lib/utils";
+import { formatPrice } from "@/lib/utils";
 
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));

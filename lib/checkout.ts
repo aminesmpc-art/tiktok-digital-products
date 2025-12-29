@@ -17,7 +17,7 @@ export async function createCheckoutSession(input: CheckoutInput) {
     return { url: `/success?demo=${item.slug}` };
   }
 
-  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2024-06-20" });
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2023-10-16" });
   const session = await stripe.checkout.sessions.create({
     mode: "payment",
     line_items: [{ price: input.priceId, quantity: 1 }],

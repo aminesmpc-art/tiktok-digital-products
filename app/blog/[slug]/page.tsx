@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { blogPosts } from "@/content/data";
-import { markdownToHtml } from "../../lib/utils";
+import { markdownToHtml } from "@/lib/utils";
 
 export function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }));

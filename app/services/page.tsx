@@ -1,5 +1,5 @@
 import { services } from "@/content/data";
-import { formatPrice } from "../../lib/utils";
+import { formatPrice } from "@/lib/utils";
 
 export const metadata = { title: "Services" };
 
