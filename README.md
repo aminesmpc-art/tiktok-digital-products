@@ -17,6 +17,10 @@ Copy `.env.example` to `.env.local` and fill as needed. Stripe keys are optional
 - `npm test`
 - `npm run build`
 
+### Path aliases
+- Use `@/content/*` for seed data (products, services, blog posts) instead of relative `../../content/*` paths.
+- Use `@/lib/*` for utilities like `markdownToHtml`, `formatPrice`, and checkout helpers.
+
 ## Testing
 Vitest covers formatting, slug lookup, and checkout creation (with mocked Stripe). Ensure no network calls are required.
 
