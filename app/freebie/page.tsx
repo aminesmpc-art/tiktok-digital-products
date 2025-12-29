@@ -1,4 +1,4 @@
-import { leadMagnets } from "../../content/data";
+import { leadMagnets } from "@/content/data";
 
 export const metadata = { title: "Freebie" };
 

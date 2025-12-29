@@ -1,4 +1,4 @@
-import { blogPosts } from "../../content/data";
+import { blogPosts } from "@/content/data";
 
 export const metadata = { title: "Blog" };
 

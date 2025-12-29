@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { products } from "../../../content/data";
+import { products } from "@/content/data";
 import { formatPrice } from "../../../lib/utils";
 
 export function generateStaticParams() {

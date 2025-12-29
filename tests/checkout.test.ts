@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { createCheckoutSession, findItem } from "../lib/checkout";
-import { products } from "../content/data";
+import { products } from "@/content/data";
 
 describe("findItem", () => {
   it("finds by slug fallback", () => {

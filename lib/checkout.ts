@@ -1,5 +1,5 @@
 import Stripe from "stripe";
-import { products, services } from "../content/data";
+import { products, services } from "@/content/data";
 
 export type CheckoutInput = { priceId: string; productSlug?: string };
 

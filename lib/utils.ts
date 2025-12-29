@@ -1,4 +1,4 @@
-import { products, services, type Product, type Service } from "../content/data";
+import { products, services, type Product, type Service } from "@/content/data";
 
 export const formatPrice = (priceCents: number, currency = "USD") =>
   new Intl.NumberFormat("en-US", { style: "currency", currency }).format(priceCents / 100);

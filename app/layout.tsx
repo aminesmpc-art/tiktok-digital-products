@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { site } from "../../content/data";
+import { site } from "@/content/data";
 
 export const metadata: Metadata = {
   title: `${site.brand} | TikTok growth systems`,

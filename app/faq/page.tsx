@@ -1,4 +1,4 @@
-import { faq } from "../../content/data";
+import { faq } from "@/content/data";
 
 export const metadata = { title: "FAQ" };
 

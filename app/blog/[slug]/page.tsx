@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { blogPosts } from "../../content/data";
+import { blogPosts } from "@/content/data";
 import { markdownToHtml } from "../../lib/utils";
 
 export function generateStaticParams() {
