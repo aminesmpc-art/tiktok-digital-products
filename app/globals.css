@@ -28,17 +28,13 @@ textarea:focus-visible {
 }
 
 @media (max-width: 768px) {
-  /* Prevent the fixed/sticky header from overlapping mobile content. */
-  body {
-    padding-top: var(--site-header-height);
-  }
-
   h1 {
     line-height: 1.15;
   }
 
   /* Ensure mobile layouts sit below the sticky header while keeping desktop spacing intact. */
   .with-header-offset {
+    /* Offset content by the dynamic header height plus breathing room. */
     padding-top: calc(var(--site-header-height) + 12px);
   }
 }
