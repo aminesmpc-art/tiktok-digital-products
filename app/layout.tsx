@@ -23,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className="min-h-screen bg-slate-50 text-slate-900">
         <SiteHeader />
-        <div className="mx-auto max-w-6xl px-4 pb-24 pt-6 space-y-10">
+        <div className="with-header-offset mx-auto max-w-6xl px-4 pb-24 pt-6 space-y-10 md:pt-8">
           <main>{children}</main>
           <footer className="border-t pt-6 text-sm text-slate-600 space-y-4">
             <div className="flex flex-wrap gap-4 items-start justify-between">

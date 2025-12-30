@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import type { Route } from "next";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { site } from "@/content/data";
 import { Button } from "@/components/button";
 
@@ -17,9 +17,24 @@ const links: { href: Route; label: string }[] = [
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const headerRef = useRef<HTMLElement | null>(null);
+
+  // Keep a CSS variable in sync with the rendered header height so mobile content
+  // can offset itself and avoid being overlapped by the sticky header or menu.
+  useEffect(() => {
+    const updateHeight = () => {
+      if (!headerRef.current) return;
+      const { height } = headerRef.current.getBoundingClientRect();
+      document.documentElement.style.setProperty("--site-header-height", `${height}px`);
+    };
+
+    updateHeight();
+    window.addEventListener("resize", updateHeight);
+    return () => window.removeEventListener("resize", updateHeight);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-30 border-b border-white/60 bg-slate-50/80 backdrop-blur">
+    <header ref={headerRef} className="sticky top-0 z-40 border-b border-white/60 bg-slate-50/80 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <Link href="/" className="text-base font-semibold tracking-tight" aria-label="Go home">
           {site.brand}

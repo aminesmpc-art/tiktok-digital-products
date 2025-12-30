@@ -11,6 +11,10 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+:root {
+  --site-header-height: 64px;
+}
+
 a {
   color: inherit;
 }
@@ -26,5 +30,10 @@ textarea:focus-visible {
 @media (max-width: 768px) {
   h1 {
     line-height: 1.15;
+  }
+
+  /* Ensure mobile layouts sit below the sticky header while keeping desktop spacing intact. */
+  .with-header-offset {
+    padding-top: calc(var(--site-header-height) + 12px);
   }
 }
