@@ -29,12 +29,21 @@ export function SiteHeader() {
     };
 
     updateHeight();
+
+    const observer = new ResizeObserver(updateHeight);
+    if (headerRef.current) {
+      observer.observe(headerRef.current);
+    }
+
     window.addEventListener("resize", updateHeight);
-    return () => window.removeEventListener("resize", updateHeight);
+    return () => {
+      window.removeEventListener("resize", updateHeight);
+      observer.disconnect();
+    };
   }, []);
 
   return (
-    <header ref={headerRef} className="sticky top-0 z-40 border-b border-white/60 bg-slate-50/80 backdrop-blur">
+    <header ref={headerRef} className="sticky top-0 z-50 border-b border-white/60 bg-slate-50/80 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <Link href="/" className="text-base font-semibold tracking-tight" aria-label="Go home">
           {site.brand}
@@ -73,7 +82,7 @@ export function SiteHeader() {
         </div>
       </div>
       {open && (
-        <div className="fixed inset-0 z-40 md:hidden" role="dialog" aria-modal>
+        <div className="fixed inset-0 z-50 md:hidden" role="dialog" aria-modal>
           <button
             aria-label="Close menu"
             className="absolute inset-0 h-full w-full bg-slate-900/40 backdrop-blur-sm"

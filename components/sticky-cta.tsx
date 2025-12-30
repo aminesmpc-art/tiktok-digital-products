@@ -24,7 +24,10 @@ export function StickyCTA({ label, href, subtext, tone = "buy" }: StickyCTAProps
   }[tone];
 
   return (
-    <div className="pointer-events-none fixed bottom-3 left-0 right-0 z-40 md:hidden">
+    <div
+      className="pointer-events-none fixed left-0 right-0 z-40 md:hidden"
+      style={{ bottom: "calc(env(safe-area-inset-bottom, 0px) + 12px)" }}
+    >
       <div className="mx-auto max-w-6xl px-4">
         <div className="pointer-events-auto overflow-hidden rounded-2xl shadow-xl ring-1 ring-black/5">
           <Link
