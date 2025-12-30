@@ -28,6 +28,11 @@ textarea:focus-visible {
 }
 
 @media (max-width: 768px) {
+  /* Prevent the fixed/sticky header from overlapping mobile content. */
+  body {
+    padding-top: var(--site-header-height);
+  }
+
   h1 {
     line-height: 1.15;
   }
